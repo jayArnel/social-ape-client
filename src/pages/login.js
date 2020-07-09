@@ -50,6 +50,7 @@ class login extends Component {
     event.preventDefault();
     this.setState({
       loading: true,
+      errors: {}
     });
     const userData = {
       email: this.state.email,
@@ -93,7 +94,7 @@ class login extends Component {
               label="Email"
               className={classes.textField}
               helperText={errors.email}
-              error={errors.email ? true : false}
+              error={errors.email || errors.general? true : false}
               value={this.state.email}
               onChange={this.handleChange}
               fullWidth
@@ -105,7 +106,7 @@ class login extends Component {
               label="Password"
               className={classes.textField}
               helperText={errors.password}
-              error={errors.password ? true : false}
+              error={errors.password || errors.general ? true : false}
               value={this.state.password}
               onChange={this.handleChange}
               fullWidth
