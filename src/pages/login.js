@@ -12,29 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-const styles = {
-  form: {
-    textAlign: "center",
-  },
-  image: {
-    margin: "20px auto",
-  },
-  pageTitle: {
-    margin: "10px auto",
-  },
-  textField: {
-    margin: "10px auto",
-  },
-  button: {
-    marginTop: 20,
-  },
-  customError: {
-    marginTop: 10,
-  },
-  progress: {
-    position: "absolute",
-  },
-};
+const styles = (theme) => ({ ...theme.styles });
 
 class login extends Component {
   constructor() {
@@ -50,7 +28,7 @@ class login extends Component {
     event.preventDefault();
     this.setState({
       loading: true,
-      errors: {}
+      errors: {},
     });
     const userData = {
       email: this.state.email,
@@ -60,6 +38,7 @@ class login extends Component {
       .post("/login", userData)
       .then((result) => {
         console.log(result.data);
+        localStorage.setItem("FBIdToken", `Bearer ${result.data.token}`);
         this.setState({ loading: false });
         this.props.history.push("/");
       })
@@ -94,7 +73,7 @@ class login extends Component {
               label="Email"
               className={classes.textField}
               helperText={errors.email}
-              error={errors.email || errors.general? true : false}
+              error={errors.email || errors.general ? true : false}
               value={this.state.email}
               onChange={this.handleChange}
               fullWidth
