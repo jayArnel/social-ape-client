@@ -8,10 +8,8 @@ import EditDetails from "./EditDetails";
 import MyButton from "../util/MyButton";
 // MUI
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
 import MuiLink from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
-import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 // Icons
 import CalendarToday from "@material-ui/icons/CalendarToday";
