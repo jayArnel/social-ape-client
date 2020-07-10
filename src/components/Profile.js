@@ -13,11 +13,12 @@ import Typography from "@material-ui/core/Typography";
 // Icons
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import EditIcon from "@material-ui/icons/Edit";
+import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 import LinkIcon from "@material-ui/icons/Link";
 import LocationOn from "@material-ui/icons/LocationOn";
 //Redux
 import { connect } from "react-redux";
-import { uploadImage } from "../redux/actions/userActions";
+import { logoutUser, uploadImage } from "../redux/actions/userActions";
 
 const styles = (theme) => ({
   paper: {
@@ -77,6 +78,9 @@ class Profile extends Component {
   handleEditPicture = () => {
     const fileInput = document.getElementById("imageInput");
     fileInput.click();
+  };
+  handleLogout = () => {
+    this.props.logoutUser();
   };
   render() {
     const {
@@ -138,6 +142,11 @@ class Profile extends Component {
               <CalendarToday color="primary" />{" "}
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
+            <Tooltip title="Logout" placement="top">
+              <IconButton onClick={this.handleLogout}>
+                <KeyboardReturn color="primary" />
+              </IconButton>
+            </Tooltip>
           </div>
         </Paper>
       ) : (
@@ -178,7 +187,7 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-const mapActionsToProps = { uploadImage };
+const mapActionsToProps = { logoutUser, uploadImage };
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
