@@ -12,11 +12,13 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 // Icons
+import ChatIcon from "@material-ui/icons/Chat";
 import CloseIcon from "@material-ui/icons/Close";
 import UnfoldMore from "@material-ui/icons/UnfoldMore";
 // Redux
 import { connect } from "react-redux";
 import { getScream } from "../redux/actions/dataActions";
+import LikeButton from "./LikeButton";
 
 const styles = (theme) => ({
   ...theme.styles,
@@ -97,6 +99,12 @@ class ScreamDialog extends Component {
           </Typography>
           <hr className={classes.invisibleSeparator} />
           <Typography variant="body1">{body}</Typography>
+          <LikeButton screamId={screamId} />
+          <span>{likeCount} likes</span>
+          <MyButton tip="Comments">
+            <ChatIcon color="primary" />
+          </MyButton>
+          <span>{commentCount} comments</span>
         </Grid>
       </Grid>
     );
