@@ -5,11 +5,27 @@ import {
   UNLIKE_SCREAM,
   DELETE_SCREAM,
   LOADING_UI,
+  STOP_LOADING_UI,
+  SET_SCREAM,
   POST_SCREAM,
   SET_ERRORS,
   CLEAR_ERRORS,
 } from "../types";
 import axios from "axios";
+
+export const getScream = (screamId) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .get(`/scream/${screamId}`)
+    .then((res) => {
+      dispatch({
+        type: SET_SCREAM,
+        payload: res.data,
+      });
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => console.log(err));
+};
 
 // Get all screams
 export const getScreams = () => (dispatch) => {
