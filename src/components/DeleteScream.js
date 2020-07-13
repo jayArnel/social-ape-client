@@ -9,7 +9,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import withStyles from "@material-ui/core/styles/withStyles";
-
+// Redux
 import { connect } from "react-redux";
 import { deleteScream } from "../redux/actions/dataActions";
 
@@ -53,11 +53,9 @@ class DeleteScream extends Component {
           <DialogTitle>Are you sure you want to delete the scream?</DialogTitle>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
-              {" "}
               Cancel
             </Button>
             <Button onClick={this.handleDelete} color="secondary">
-              {" "}
               Delete
             </Button>
           </DialogActions>
