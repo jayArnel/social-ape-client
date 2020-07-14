@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 // Components
 import MyButton from "../../util/MyButton";
-import PostScream from "../Scream/PostScream";
+import PostScream from "../scream/PostScream";
 // MUI
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
