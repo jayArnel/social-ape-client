@@ -1,3 +1,5 @@
+import rfdc from "rfdc";
+
 import {
   SET_SCREAMS,
   LIKE_SCREAM,
@@ -61,11 +63,19 @@ export default function (state = initialState, action) {
         screams: [action.payload, ...state.screams],
       };
     case SUBMIT_COMMENT:
+      const clone = rfdc();
+      let commentedIndex = state.screams.findIndex(
+        (scream) => scream.screamId === action.payload.screamId
+      );
+      let updatedScreams = clone(state.screams);
+      updatedScreams[commentedIndex].commentCount += 1;
       return {
         ...state,
+        screams: updatedScreams,
         scream: {
           ...state.scream,
           comments: [action.payload, ...state.scream.comments],
+          commentCount: state.scream.commentCount + 1,
         },
       };
     default:
