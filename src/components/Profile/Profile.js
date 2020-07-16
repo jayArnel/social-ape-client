@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 // Components
 import EditDetails from "./EditDetails";
+import Logout from "./Logout";
 import MyButton from "../../util/MyButton";
 import ProfileSkeleton from "../../util/ProfileSkeleton";
 // MUI
@@ -18,7 +19,6 @@ import Typography from "@material-ui/core/Typography";
 // Icons
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import EditIcon from "@material-ui/icons/Edit";
-import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 import LinkIcon from "@material-ui/icons/Link";
 import LocationOn from "@material-ui/icons/LocationOn";
 //Redux
@@ -116,9 +116,7 @@ class Profile extends Component {
                   <CalendarToday color="primary" />{" "}
                   <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
                 </div>
-                <MyButton tip="Logout" onClick={this.handleLogout}>
-                  <KeyboardReturn color="primary" />
-                </MyButton>
+                <Logout />
                 <EditDetails />
               </div>
             </Paper>
