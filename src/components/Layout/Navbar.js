@@ -7,6 +7,7 @@ import PostScream from "../scream/PostScream";
 import Notifications from "./Notifications";
 // MUI
 import AppBar from "@material-ui/core/AppBar";
+import Skeleton from "@material-ui/lab/Skeleton";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 // Icons
@@ -16,11 +17,17 @@ import { connect } from "react-redux";
 
 class Navbar extends Component {
   render() {
-    const { authenticated } = this.props;
+    const { authenticated, loading } = this.props;
     return (
       <AppBar>
         <Toolbar className="nav-container">
-          {authenticated ? (
+          {loading ? (
+            <Fragment>
+              <Skeleton variant="circle" width={48} height={48} />
+              <Skeleton variant="circle" width={48} height={48} />
+              <Skeleton variant="circle" width={48} height={48} />
+            </Fragment>
+          ) : authenticated ? (
             <Fragment>
               <PostScream />
               <Link to="/">
@@ -51,10 +58,12 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
   authenticated: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
+  loading: state.user.loading,
 });
 
 export default connect(mapStateToProps)(Navbar);
