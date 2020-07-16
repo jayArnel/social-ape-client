@@ -3,6 +3,7 @@ import {
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,
   LOADING_USER,
+  STOP_LOADING_USER,
   LIKE_SCREAM,
   UNLIKE_SCREAM,
   MARK_NOTIFICATIONS_READ,
@@ -35,6 +36,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: true,
+      };
+    case STOP_LOADING_USER:
+      return {
+        ...state,
+        loading: false,
       };
     case LIKE_SCREAM:
       return {

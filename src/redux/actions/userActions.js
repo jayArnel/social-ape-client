@@ -5,6 +5,7 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   LOADING_USER,
+  STOP_LOADING_USER,
   MARK_NOTIFICATIONS_READ,
 } from "../types";
 import axios from "axios";
@@ -71,7 +72,14 @@ export const uploadImage = (formData) => (dispatch) => {
     .then(() => {
       dispatch(getUserData());
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      dispatch({ type: STOP_LOADING_USER });
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data,
+      });
+      console.log(err);
+    });
 };
 
 export const editUserDetails = (userDetails) => (dispatch) => {
