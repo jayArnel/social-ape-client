@@ -16,9 +16,17 @@ class user extends Component {
   state = {
     profile: null,
   };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match !== this.props.match) {
+      this.getUserData(nextProps);
+    }
+  }
   componentDidMount() {
-    const handle = this.props.match.params.handle;
-    const screamId = this.props.match.params.screamId;
+    this.getUserData(this.props);
+  }
+  getUserData = (props) => {
+    const handle = props.match.params.handle;
+    const screamId = props.match.params.screamId;
     if (screamId) this.setState({ screamIdParam: screamId });
 
     this.props.getUserData(handle);
@@ -30,7 +38,7 @@ class user extends Component {
         });
       })
       .catch((err) => console.log(err));
-  }
+  };
   render() {
     const { screams, loading } = this.props.data;
     const { screamIdParam } = this.state;
@@ -56,7 +64,7 @@ class user extends Component {
         </Grid>
         <Grid item sm={4} xs={12}>
           {this.state.profile === null ? (
-            <ProfileSkeleton/>
+            <ProfileSkeleton />
           ) : (
             <StaticProfile profile={this.state.profile} />
           )}
