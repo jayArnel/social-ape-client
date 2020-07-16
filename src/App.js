@@ -9,7 +9,7 @@ import axios from "axios";
 //Redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import { SET_AUTHENTICATED } from "./redux/types";
+import { SET_AUTHENTICATED, SET_ERRORS } from "./redux/types";
 import { logoutUser, getUserData } from "./redux/actions/userActions";
 // Components
 import Navbar from "./components/layout/Navbar";
@@ -22,8 +22,25 @@ import user from "./pages/user";
 
 const theme = createMuiTheme(themeFile);
 
+// axios defaults
 axios.defaults.baseURL =
   "https://asia-east2-social-ape-d65a0.cloudfunctions.net/api";
+
+axios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    if (error.response.data.code === "auth/id-token-revoked") {
+      store.dispatch(logoutUser());
+      store.dispatch({
+        type: SET_ERRORS,
+        payload: { auth: "Session has expired. Please log in again." },
+      });
+    }
+    return Promise.reject(error);
+  }
+);
 
 const token = localStorage.FBIdToken;
 if (token) {

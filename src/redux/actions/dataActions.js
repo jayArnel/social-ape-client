@@ -102,10 +102,15 @@ export const submitComment = (screamId, commentData) => (dispatch) => {
       dispatch(clearErrors());
     })
     .catch((err) => {
-      dispatch({
-        type: SET_ERRORS,
-        payload: err.response.data,
-      });
+      if (
+        err &&
+        !(err.response.data.code && err.response.data.code.startsWith("auth"))
+      ) {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.response.data,
+        });
+      }
     });
 };
 

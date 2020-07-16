@@ -137,10 +137,16 @@ class Profile extends Component {
           </Fragment>
         ) : (
           <Paper className={classes.paper}>
-            <Typography variant="body2" align="center">
-              No profile found. <br />
-              Please login or create an account.
-            </Typography>
+            {errors && errors.auth ? (
+              <Typography variant="body2" align="center">
+                Session has expired. Please login again.
+              </Typography>
+            ) : (
+              <Typography variant="body2" align="center">
+                No profile found. <br />
+                Please login or create an account.
+              </Typography>
+            )}
             <div className={classes.buttons}>
               <Button
                 variant="contained"

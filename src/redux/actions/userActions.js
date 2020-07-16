@@ -74,10 +74,15 @@ export const uploadImage = (formData) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: STOP_LOADING_USER });
-      dispatch({
-        type: SET_ERRORS,
-        payload: err.response.data,
-      });
+      if (
+        err &&
+        !(err.response.data.code && err.response.data.code.startsWith("auth"))
+      ) {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.response.data,
+        });
+      }
       console.log(err);
     });
 };
