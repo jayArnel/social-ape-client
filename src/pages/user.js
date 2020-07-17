@@ -16,10 +16,12 @@ import { getUserData } from "../redux/actions/dataActions";
 class user extends Component {
   state = {
     profile: null,
+    screamIdParam: "",
   };
   componentWillReceiveProps(nextProps) {
     if (nextProps.match !== this.props.match) {
       this.setState({ profile: null });
+      this.setState({ screamIdParam: "" });
       this.getUserData(nextProps);
     }
   }
