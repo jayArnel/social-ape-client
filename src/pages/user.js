@@ -4,6 +4,7 @@ import axios from "axios";
 // Components
 import Scream from "../components/scream/Scream";
 import StaticProfile from "../components/profile/StaticProfile";
+import Profile from "../components/profile/Profile";
 import ScreamSkeleton from "../util/ScreamSkeleton";
 import ProfileSkeleton from "../util/ProfileSkeleton";
 // MUI
@@ -18,6 +19,7 @@ class user extends Component {
   };
   componentWillReceiveProps(nextProps) {
     if (nextProps.match !== this.props.match) {
+      this.setState({ profile: null });
       this.getUserData(nextProps);
     }
   }
@@ -56,7 +58,6 @@ class user extends Component {
         else return <Scream key={scream.screamId} scream={scream} openDialog />;
       })
     );
-
     return (
       <Grid container spacing={2}>
         <Grid item sm={8} xs={12}>
@@ -65,6 +66,9 @@ class user extends Component {
         <Grid item sm={4} xs={12}>
           {this.state.profile === null ? (
             <ProfileSkeleton />
+          ) : this.state.profile.handle ===
+            this.props.user.credentials.handle ? (
+            <Profile />
           ) : (
             <StaticProfile profile={this.state.profile} />
           )}
@@ -77,10 +81,12 @@ class user extends Component {
 user.propTypes = {
   getUserData: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   data: state.data,
+  user: state.user,
 });
 
 export default connect(mapStateToProps, { getUserData })(user);
