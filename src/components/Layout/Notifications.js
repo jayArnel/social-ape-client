@@ -71,14 +71,14 @@ class Notifications extends Component {
             );
 
           return (
-            <MenuItem key={notif.notificationId} onClick={this.handleClose}>
+            <MenuItem
+              key={notif.notificationId}
+              onClick={this.handleClose}
+              component={Link}
+              to={`/users/${notif.recipient}/scream/${notif.screamId}`}
+            >
               {icon}
-              <Typography
-                component={Link}
-                color="primary"
-                variant="body1"
-                to={`/users/${notif.recipient}/scream/${notif.screamId}`}
-              >
+              <Typography color="primary" variant="body1">
                 {notif.sender} {verb} your scream {time}
               </Typography>
             </MenuItem>
