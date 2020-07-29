@@ -3,13 +3,13 @@ pipeline {
   stages {
     stage('Install') {
       steps {
-        bat 'npm install'
+        sh 'npm install'
       }
     }
 
     stage('Test') {
       steps {
-        bat 'npm test -- --coverage=true --coverageDirectory=reports/coverage --reporters="default" --reporters="jest-junit"'
+        sh 'npm test -- --coverage=true --coverageDirectory=reports/coverage --reporters="default" --reporters="jest-junit"'
       }
     }
 
