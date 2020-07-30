@@ -1,12 +1,14 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:14-alpine'
+    }
+
+  }
   stages {
     stage('Install') {
       steps {
-        nodejs('NodeJS 14') {
-          sh 'npm install'
-        }
-
+        sh 'npm install'
       }
     }
 
