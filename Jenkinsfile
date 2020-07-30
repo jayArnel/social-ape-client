@@ -35,7 +35,5 @@ pipeline {
     CI = 'true'
     JEST_JUNIT_OUTPUT_DIR = 'reports'
     JEST_JUNIT_OUTPUT_NAME = 'test_results.xml'
-    NODE_HOME = '${tool \'NodeJS 14\'}'
-    PATH = '${env.NODEJS_HOME}/bin:${env.PATH}'
   }
 }
