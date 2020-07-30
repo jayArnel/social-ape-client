@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        nodejs('NodeJS 14') {
+        nodejs('node14') {
           sh 'npm install'
         }
 
@@ -12,7 +12,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        nodejs('NodeJS 14') {
+        nodejs('node14') {
           sh 'npm test -- --coverage=true --coverageDirectory=reports/coverage --reporters="default" --reporters="jest-junit"'
         }
 
@@ -30,6 +30,7 @@ pipeline {
         stage('Coverage') {
           steps {
             cobertura(coberturaReportFile: 'reports/coverage/cobertura-coverage.xml', sourceEncoding: 'ASCII')
+            publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'reports/coverage', reportFiles: 'index.html', reportName: 'Coverage report', reportTitles: ''])
           }
         }
 
