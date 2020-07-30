@@ -41,5 +41,6 @@ pipeline {
     CI = 'true'
     JEST_JUNIT_OUTPUT_DIR = 'reports'
     JEST_JUNIT_OUTPUT_NAME = 'test_results.xml'
+    JEST_JUNIT_INCLUDE_SHORT_CONSOLE_OUTPUT = 'true'
   }
 }
