@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:14-alpine'
+    }
+
+  }
   stages {
     stage('Install') {
       steps {
@@ -9,7 +14,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'sh npm test -- --coverage=true --coverageDirectory=reports/coverage --reporters="default" --reporters="jest-junit"'
+        sh 'npm test -- --coverage=true --coverageDirectory=reports/coverage --reporters="default" --reporters="jest-junit"'
       }
     }
 
