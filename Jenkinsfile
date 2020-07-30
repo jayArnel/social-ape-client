@@ -4,7 +4,7 @@ pipeline {
     stage('Install') {
       steps {
         sh 'echo USER'
-        sh 'echo "$USER"'
+        sh 'echo "${USER}"'
         sh 'npm install'
       }
     }
