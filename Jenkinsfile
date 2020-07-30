@@ -12,7 +12,10 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'npm test -- --coverage=true --coverageDirectory=reports/coverage --reporters="default" --reporters="jest-junit"'
+        nodejs('NodeJS 14') {
+          sh 'npm test -- --coverage=true --coverageDirectory=reports/coverage --reporters="default" --reporters="jest-junit"'
+        }
+
       }
     }
 
