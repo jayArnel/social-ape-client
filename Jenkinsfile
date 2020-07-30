@@ -1,10 +1,14 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:14'
+      args '-p 3000:3000'
+    }
+
+  }
   stages {
-    stage('Install') {
+    stage('Build') {
       steps {
-        sh 'echo USER'
-        sh 'echo "${USER}"'
         sh 'npm install'
       }
     }
