@@ -1,15 +1,8 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:14'
-      args '-p 3000:3000'
-    }
-
-  }
+  agent any
   stages {
     stage('Build') {
       steps {
-        sh 'npm cache clean --force '
         sh 'npm install'
       }
     }
@@ -42,5 +35,7 @@ pipeline {
     CI = 'true'
     JEST_JUNIT_OUTPUT_DIR = 'reports'
     JEST_JUNIT_OUTPUT_NAME = 'test_results.xml'
+    NODE_HOME = '${tool \'NodeJS 14\'}'
+    PATH = '${env.NODEJS_HOME}/bin:${env.PATH}'
   }
 }
