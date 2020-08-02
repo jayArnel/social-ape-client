@@ -30,7 +30,7 @@ pipeline {
         stage('Coverage') {
           steps {
             cobertura(coberturaReportFile: 'reports/coverage/cobertura-coverage.xml', sourceEncoding: 'ASCII')
-            publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'reports/coverage', reportFiles: 'index.html', reportName: 'Coverage report', reportTitles: 'Coverage report'])
+            publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'reports/coverage', reportFiles: 'index.html', reportName: 'Test Coverage Report', reportTitles: 'Test Coverage Report'])
           }
         }
 
