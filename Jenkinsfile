@@ -43,6 +43,7 @@ pipeline {
     JEST_JUNIT_OUTPUT_DIR = 'reports'
     JEST_JUNIT_OUTPUT_NAME = 'test_results.xml'
     JEST_JUNIT_INCLUDE_SHORT_CONSOLE_OUTPUT = 'true'
-    JEST_JUNIT_TITLE = '{classname}, {title}, {suitename}, {filepath}, {filename}, {displayName}'
+    JEST_JUNIT_TITLE = '{classname}'
+    JEST_JUNIT_CLASSNAME = '{title}'
   }
 }
