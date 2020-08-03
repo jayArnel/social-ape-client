@@ -30,7 +30,7 @@ pipeline {
         stage('Coverage') {
           steps {
             cobertura(coberturaReportFile: 'reports/coverage/cobertura-coverage.xml', sourceEncoding: 'ASCII')
-            publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'reports/coverage', reportFiles: 'index.html', reportName: 'Coverage report', reportTitles: ''])
+            publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'reports/coverage', reportFiles: 'index.html', reportName: 'Test Coverage Report', reportTitles: 'Test Coverage Report'])
           }
         }
 
@@ -43,5 +43,7 @@ pipeline {
     JEST_JUNIT_OUTPUT_DIR = 'reports'
     JEST_JUNIT_OUTPUT_NAME = 'test_results.xml'
     JEST_JUNIT_INCLUDE_SHORT_CONSOLE_OUTPUT = 'true'
+    JEST_JUNIT_TITLE = '{classname}'
+    JEST_JUNIT_CLASSNAME = '{title}'
   }
 }
